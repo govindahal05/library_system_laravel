@@ -76,10 +76,19 @@ class BookController extends \BaseController {
 	 */
 	public function show()
 	{	
-		$books = books::get();
+		$books = Books::get();
 		//dd($books);
+		$i = 1;
 
-		 return View::make('admin/view_book',$books);
+		 return View::make('admin.view_book')->with(['sno' => $i, 'books'=>$books]);
+	}
+	public function membershow()
+	{	
+		$books = Books::get();
+		//dd($books);
+		$i = 1;
+
+		 return View::make('members.view_book')->with(['sno' => $i, 'books'=>$books]);
 	}
 
 

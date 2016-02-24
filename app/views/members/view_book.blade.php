@@ -1,11 +1,11 @@
-@extends('layouts.default_member')
+@extends('layouts.default_admin')
 
 @section('content')
 <table border=1 width=700>
 	<thead >
 		<tr>
 			<th>S|N</th>
-			<th>Book Name</th>
+			<th>Book hgfhgfhgName</th>
 			<th>ISBN No</th>
 			<th>Edition</th>
 			<th>Author Name</th>
@@ -13,13 +13,10 @@
 			<th>Category</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody> 
 	 @foreach($books as $book)
 		<tr>
-			<td>
-				<?php $i = 1; 
-				echo $i ?>
-			</td>
+			<td> {{ $sno }} </td>
 			<td>{{ $book->book_name}}</td>
 			<td>{{ $book->isbn_no}}</td>
 			<td>{{ $book->edition}}</td>
@@ -28,8 +25,8 @@
 			<td>{{ $book->category}}</td>
 						
 		</tr>
-		{{$i++; }}
-		@foreach_end
+		{{ $sno++ }}
+		@endforeach
 	</tbody>
 </table>
 @stop

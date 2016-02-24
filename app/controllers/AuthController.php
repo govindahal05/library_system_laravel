@@ -7,43 +7,7 @@ class AuthController extends BaseController
         return View::make('register');
     }
 
-    public function register()
-    {
-        $name = \Input::get('name');
-        $address = \Input::get('address');
-        $phone = \Input::get('phone');
-        $email = \Input::get('email');
-        $gender = \Input::get('gender');
-        $username = \Input::get('username');
-        $password = \Input::get('password');
-
-        $validator = Validator::make([
-                'username' => $username,
-                'password' => $password,
-            ],
-            [
-            'username' => 'unique:users,username',
-            'password' => 'min:4',
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->withmessages('Register filed');
-        }
-
-        else{
-            User::create([
-                'name' => $name,
-                'address' => Hash::make($password),
-                'phone' => $phone,
-                'email' => $email,
-                'gender' => $gender,
-                'username' => $username,
-                'password' => Hash::make($password)
-            ]);
-
-            return View::make('register');
-        }
-    }
+   
 
     public function showLogin()
     {
@@ -62,6 +26,7 @@ class AuthController extends BaseController
         ]);
 
         if ($user_authentication){
+            Session::put('user',$username);
             if($username=='admin'){
                 return Redirect::Route('admin');
             }

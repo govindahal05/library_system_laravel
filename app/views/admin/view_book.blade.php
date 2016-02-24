@@ -5,7 +5,7 @@
 	<thead >
 		<tr>
 			<th>S|N</th>
-			<th>Book Name</th>
+			<th>Book hgfhgfhgName</th>
 			<th>ISBN No</th>
 			<th>Edition</th>
 			<th>Author Name</th>
@@ -13,18 +13,20 @@
 			<th>Category</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody> 
+	 @foreach($books as $book)
 		<tr>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			
+			<td> {{ $sno }} </td>
+			<td>{{ $book->book_name}}</td>
+			<td>{{ $book->isbn_no}}</td>
+			<td>{{ $book->edition}}</td>
+			<td>{{ $book->author_name}}</td>
+			<td>{{ $book->price}}</td>
+			<td>{{ $book->category}}</td>
+						
 		</tr>
-		
+		{{ $sno++ }}
+		@endforeach
 	</tbody>
 </table>
 @stop

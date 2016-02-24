@@ -51,3 +51,8 @@ ul.pages { padding-left: 2em; list-style: square; font-weight: normal; }
 }
 #page h2 { color: green; margin-top: 1em;}
 #page h3 { color: green; }
+
+.well label
+{
+	display: inline-block; width: 150px;
+}

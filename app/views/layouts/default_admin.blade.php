@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Admin panel</title>
+	<!-- {{ HTML::style('css/bootstrap.min.css') }} -->
 	{{ HTML::style('css/styles.css') }}
 </head>
 <body>
@@ -15,7 +16,7 @@
 	</div>
 	
 	<div class="view-content">
-	 <h3>Welcome ... </h3>
+	 <h3>Welcome Admin </h3>
 	@yield('content')	</div>
 	
 </body>

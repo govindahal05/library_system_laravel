@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Member panel</title>
+	{{ HTML::style('css/bootstrap.min.css') }}
 	{{ HTML::style('css/styles.css') }}
 </head>
 <body>
@@ -14,7 +15,8 @@
 	</div>
 	
 	<div class="view-content">
-		<h2>Welcome ... </h2>
+	<!-- $username = Session::get('user'); -->
+		<h2>Welcome {{ Session::get('user') }} </h2>
 		@yield('content') 
 	</div>
 	

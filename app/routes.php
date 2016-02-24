@@ -38,11 +38,21 @@ Route::post('addbook','BookController@create');
 });*/
 
 Route::get('showbook','BookController@show');
+Route::get('displaybook','BookController@membershow');
 
 
 Route::get('editdeletebook', function(){
 	return View::make('admin/editdeletebook');
 });
-Route::get('displaybook', function(){
-	return View::make('members/view_book');
+// Route::get('displaybook', function(){
+// 	return View::make('members/view_book');
+// });
+
+/*
+***Register / login
+*/
+Route::get('register', function(){
+	return View::make('register');
 });
+Route::post('register','userController@register');
+
