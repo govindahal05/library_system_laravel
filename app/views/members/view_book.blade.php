@@ -14,17 +14,22 @@
 		</tr>
 	</thead>
 	<tbody>
+	 @foreach($books as $book)
 		<tr>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			<td>1</td>
-			
+			<td>
+				<?php $i = 1; 
+				echo $i ?>
+			</td>
+			<td>{{ $book->book_name}}</td>
+			<td>{{ $book->isbn_no}}</td>
+			<td>{{ $book->edition}}</td>
+			<td>{{ $book->author_name}}</td>
+			<td>{{ $book->price}}</td>
+			<td>{{ $book->category}}</td>
+						
 		</tr>
-		
+		{{$i++; }}
+		@foreach_end
 	</tbody>
 </table>
 @stop

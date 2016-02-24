@@ -23,11 +23,11 @@ class BookController extends \BaseController {
 		 $name = \Input::get('name');
         $isbnno = \Input::get('isbnno');
         $edition = \Input::get('edition');
-        $author = \Input::get('author_name');
+        $author_name = \Input::get('author_name');
         $price = \Input::get('price');
-        $category = \Input::get('caterory');
+        $category = \Input::get('category');
 
-        // return $name;
+        //return $category;
         /*$validator = Validator::make([
                 'name' => $name,
                 'author_name'=>$author
@@ -43,12 +43,12 @@ class BookController extends \BaseController {
 
         else{*/
             Books::create([
-                'name' => $name,
-                'isbnno' =>$isbnno,
+                'isbn_no' =>$isbnno,
                 'edition' => $edition,
-                'author' => $author,
+                'author_name' => $author_name,
+                'book_name' => $name,
                 'price' => $price,
-                'caterory' => $category,
+                'category' => $category,
             ]);
 
            Session::flash('message', "Book Added");
@@ -77,9 +77,9 @@ class BookController extends \BaseController {
 	public function show()
 	{	
 		$books = books::get();
-		dd($books);
+		//dd($books);
 
-		 return View::make('admin/view_book');
+		 return View::make('admin/view_book',$books);
 	}
 
 

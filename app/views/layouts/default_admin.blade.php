@@ -15,7 +15,7 @@
 	</div>
 	
 	<div class="view-content">
-	 Welcome .... 
+	 <h3>Welcome ... </h3>
 	@yield('content')	</div>
 	
 </body>

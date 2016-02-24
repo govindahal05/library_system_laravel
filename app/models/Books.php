@@ -8,7 +8,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Books extends Eloquent implements UserInterface, RemindableInterface {
 
 	public $timestamps = false;
-	//protected $fillable = ['username','password'];
+	protected $fillable = ['name','isbn_no','edition','author_name','book_name','price','category'];
 
 	use UserTrait, RemindableTrait;
 
