@@ -23,7 +23,9 @@
 {{ Form::close() }}
      </div>
 <div class="text-center">
-      <a href="/register" >Not Member? Register</a>
+  <p>
+    {{ link_to("/register",'Register Here')}}
+   </p>
     </div>
 </div>
 

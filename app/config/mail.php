@@ -41,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 587,
+	'port' => 465,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -53,8 +53,8 @@ return array(
 	| used globally for all e-mails that are sent by your application.
 	|
 	*/
+		'from' => array('address' => null, 'name' => null),
 
-	'from' => array('address' => null, 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return array(
 	*/
 
 	'username' => null,
-
+	
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Server Password

@@ -11,6 +11,7 @@
 			<th>Author Name</th>
 			<th>Price</th>
 			<th>Category</th>
+			<th>Option</th>
 		</tr>
 	</thead>
 	<tbody> 
@@ -23,6 +24,7 @@
 			<td>{{ $book->author_name}}</td>
 			<td>{{ $book->price}}</td>
 			<td>{{ $book->category}}</td>
+    		<td>{{link_to("/editbook/{$books->id}",' Edit ')}}{{ link_to("/deletebook/{$book->id}",' Delete ')}}</td>
 						
 		</tr>
 		{{ $sno++ }}

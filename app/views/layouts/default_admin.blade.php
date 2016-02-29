@@ -10,9 +10,12 @@
 	
 	<div id = 'navigation'>
 		<h2>Admin Panel</h2>
-		<a href="addbook">Add Book</a><br />
-		<a href="showbook">Show Book</a><br />
-		<a href="editdeletebook">Edit | Delete Book</a><br />
+		<h3>
+    		{{ link_to("/logout",'logout')}}
+			
+		</h3>
+    		{{ link_to("/addbook",'Add Book')}}
+    		{{ link_to("/showbook",'Show Book')}}
 	</div>
 	
 	<div class="view-content">

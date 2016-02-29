@@ -1,133 +1,74 @@
 <?php
 
-class UserController extends \BaseController {
+// use Repositories/UserRepository;
 
+class UserController extends BaseController {
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
+	 * @param Validator $validator
+	 * @param User $user
+	 * @param Request $request
+	 * @param Authentication $authenticator
 	 */
-	public function index()
-	{
-		
-		$users = User::all();
-		return View::make('users/index',['users'=>$users]);
-
+	public function __construct(UserRepository $user, CustomValidator $validator, Request $request, Authentication $authenticator) {
+		$this->user = $user;
+		$this->validator = $validator;
+		$this->request = $request;
+		$this->authenticator = $authenticator;
 	}
-	 public function register()
+	public function registerUser() {
+		$data = $input = Input::all();
+		$rules = array(
+			'email' => 'unique:users,email',
+			'username' => 'unique:users',
+			'password' => 'min:4|max:10',
+		);
+		$validation = $this->validator->validate($data, $rules);
+		if ($validation === true) {
+			$user = $this->user->addUpdate($data);
+			// Mail::send('mailbody', array('users' => $data), function ($message) use ($email) {
+			// 	$message->to($email)->subject('Welcome to Library management system');
+			// });
+			Session::flash('message', "Account Successfully Created");
+			return Redirect::back();
+		}
+		return Redirect::back()->withInput()->withErrors($validation);
+	}
+	public function showLogin()
     {
-        $name = \Input::get('name');
-        $address = \Input::get('address');
-        $phone = \Input::get('phone');
-        $email = \Input::get('email');
-        $gender = \Input::get('gender');
-        $username = \Input::get('username');
-        $password = \Input::get('password');
-
-        $validator = Validator::make([
-                'username' => $username,
-                'password' => $password,
-            ],
-            [
-            'username' => 'unique:users,username',
-            'password' => 'min:4',
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->withmessages('Register filed');
-        }
-
-        else{
-            User::create([
-                'name' => $name,
-                'address' =>$address,
-                'phone' => $phone,
-                'email' => $email,
-                'gender' => $gender,
-                'username' => $username,
-                'password' => Hash::make($password)
-            ]);
-			Session::flash('message', "Book Added");
-        	return Redirect::back();
-            return View::make('register');
-        }
+        return View::make('frontend');
     }
-	Public function show($username)
-	{
-		$user = User::whereUsername($username)->first(); 
-		//select *from users where username = USERNAME LIMIT 1
-		return View::make('users/show',['users'=>$user]);
+	public function login() {
+		$data = Input::all();
+		$rules = array('username' => $data['username'],
+			'password' => $data['password']);
+		$authenticate = $this->authenticator->authenticate($rules);
+		if ($authenticate === true) {
+			if ($data['username'] == 'admin') {
+				return Redirect::route('adminpanel');
+			}
+			 else {
+				/*$users = $this->user->getUsers($data['username']);
+				foreach ($users as $usr) {
+					Session::put('username', $data['username']);
+					Session::put('name', $usr->name);
+				}*/
+					return Redirect::route('memberpanel');
+				
+			}
+		} else {
+			return Redirect::back()->with(['message' => 'Unauthorized Access']);
+		}
 	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('users/create');
+	 public function gotoadmin()
+    {
+        return View::make('admin/adminDashboard');
+    } 
+    public function gotomember()
+    {
+        return View::make('members/memberDashboard');
+    }
+	public function logout() {
+		Session::flush();
+		return Redirect::route('login');
 	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function shows($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }
