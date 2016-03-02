@@ -10,8 +10,9 @@
 	
 	<div id = 'navigation'>
 		<h2>Member Panel</h2>
-		<a href="displaybook">List Book</a><br />
-		<a href="booktaken"> Issued Book</a>
+		<h3>{{ link_to("/logout",'logout')}}</h3>
+		<p>{{ link_to("/displaybook",'List Book')}}</p>
+    	<p>{{ link_to("/booktaken",'Issued Book')}}</p>
 	</div>
 	
 	<div class="view-content">

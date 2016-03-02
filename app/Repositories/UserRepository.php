@@ -32,4 +32,25 @@ class UserRepository {
 	/**
 	 * @param $email
 	 */
+	public function processForget($email) {
+		$email = $email;
+		$users = $this->user->where('email', '=', $email)->get();
+		foreach ($users as $us) {
+			\Mail::send('members/forgetpassword', array('users' => $us['id']), function ($message) use ($email) {
+				$message->to($email)->subject('Reset Password');
+			});
+		}
+	}
+	/**
+	 * @param $data
+	 */
+	public function updatePassword($data) {
+		$users = $this->user->where('userid', '=', $data['userid'])->get();
+		$users->password = Hash::make($data['password']);
+		$users->save();
+	}
+	/**
+	 * @param $email
+	 */
+	
 }

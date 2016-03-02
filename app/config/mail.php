@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+		'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 465,
+		'port' => 465,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -53,7 +53,9 @@ return array(
 	| used globally for all e-mails that are sent by your application.
 	|
 	*/
-		'from' => array('address' => null, 'name' => null),
+
+		'from' => array('address' => 'testgovinda5@gmail.com', 'name' => 'Govinda Dahal'),
+		
 
 
 	/*
@@ -67,7 +69,7 @@ return array(
 	|
 	*/
 
-	'encryption' => 'tls',
+	'encryption' => 'ssl',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +82,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'testgovinda5@gmail.com',
 	
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +95,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'gmail67890',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -67,8 +67,36 @@ class UserController extends BaseController {
     {
         return View::make('members/memberDashboard');
     }
+
+ 	
 	public function logout() {
 		Session::flush();
+        return View::make('frontend');
+		// return Redirect::route('login');
+	}
+	public function forgetPassword()
+    {
+        return View::make('members/forgetpassword');
+    }
+	
+	public function forgetProcess() {
+		$email = \Input::get('email');
+		$rules = array('email' => 'unique:users,email');
+		$authenticate = $this->validator->validate(['email' => $email], $rules);
+		// dd($authenticate);
+		if ($authenticate === true) {
+			return Redirect::back()->with(['message' => 'Email not registered']);
+		} else {
+			$this->user->processForget($email);
+			return Redirect::back()->with(['message' => 'Check your inbox and proceed to change password.']);
+		}
+	}
+	public function goToReset() {
+		return View::make('members/resetpassword');
+	}
+	public function resetProcess() {
+		$data = Input::all();
+		$this->user->updatePassword($data);
 		return Redirect::route('login');
 	}
 }

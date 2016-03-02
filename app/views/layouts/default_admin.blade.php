@@ -10,12 +10,13 @@
 	
 	<div id = 'navigation'>
 		<h2>Admin Panel</h2>
-		<h3>
-    		{{ link_to("/logout",'logout')}}
-			
-		</h3>
-    		{{ link_to("/addbook",'Add Book')}}
-    		{{ link_to("/showbook",'Show Book')}}
+		<h3>{{ link_to("/logout",'logout')}}</h3>
+			<p>
+    			{{ link_to("/addbook",'Add Book')}}
+    		</p>
+    		<p>
+    			{{ link_to("/showbook",'Show Book')}}
+    		</p>
 	</div>
 	
 	<div class="view-content">

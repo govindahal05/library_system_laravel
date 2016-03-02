@@ -24,8 +24,10 @@
      </div>
 <div class="text-center">
   <p>
+    <a href="/register" ></a>
     {{ link_to("/register",'Register Here')}}
    </p>
+  {{ link_to("/forgetpassword",'Forget Password?')}}
     </div>
 </div>
 
